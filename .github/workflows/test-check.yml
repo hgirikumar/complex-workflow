@@ -1,0 +1,8 @@
+name: "Ahold Yurii content"
+on:
+  workflow_dispatch:
+    inputs:
+      revision:
+        description: 'type the file name (*.spec.js)'
+        required: true         
+

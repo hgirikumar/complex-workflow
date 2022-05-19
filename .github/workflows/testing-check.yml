@@ -5,4 +5,7 @@ on:
       revision:
         description: 'type the file name (*.spec.js)'
         required: true         
-
+jobs:
+  build:
+      runs-on: ubuntu-latest
+      

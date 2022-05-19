@@ -44,6 +44,13 @@ jobs:
   print-tag:
     runs-on: ubuntu-latest
     if:  ${{ github.event.inputs.print_tags == 'true' }} 
+    env: 
+      GIT_SFCC_REPOSITORY: 'git@github.com:RoyalAholdDelhaize/etos-sfcc-ecom.git'
+      GIT_SFCC_CI_REPOSITORY: 'git@github.com:RoyalAholdDelhaize/etos-sfcc-ci.git'
+      
+
     steps:
       - name: Print the input tag to STDOUT
         run: echo  The tags are ${{ github.event.inputs.tags }} 
+      - name: checkout to the branch.
+        uses: actions/checkout@v3

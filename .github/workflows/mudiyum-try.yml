@@ -1,0 +1,49 @@
+name: Test-choice
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Select the Js file'
+        required: true
+        default: 'search.spec.js' 
+        type: choice
+        options:
+        - emptyCart.spec.js
+        - filter.spec.js
+        - login.spec.js
+        - navigation.spec.js
+        - registration.spec.js
+        - search.spec.js
+        - storefinder.spec.js
+        - testData.js
+        - guestWithDelivery.spec.js
+        - guestWithPickUp.spec.js
+        - loggedInWithDelivery.spec.js
+        - loggedInWithPickUp.spec.js
+        - paymentCards.spec.js
+        - spGuestWithDelivery.spec.js
+        - cartPage.spec.js
+        - checkout.spec.js
+        - configuratorStep1.spec.js
+        - configuratorStep2.spec.js
+        - configuratorStep3.spec.js
+      print_tags:
+        description: 'True to print to STDOUT'
+        required: true 
+        type: boolean 
+      tags:
+        description: 'Test scenario tags'
+        required: true 
+        type: string
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true 
+
+jobs:
+  print-tag:
+    runs-on: ubuntu-latest
+    if:  ${{ github.event.inputs.print_tags == 'true' }} 
+    steps:
+      - name: Print the input tag to STDOUT
+        run: echo  The tags are ${{ github.event.inputs.tags }} 

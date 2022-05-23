@@ -27,10 +27,17 @@ on:
         - configuratorStep1.spec.js
         - configuratorStep2.spec.js
         - configuratorStep3.spec.js
+        - All the above
+        
       print_tags:
-        description: 'True to print to STDOUT'
+        description: 'Select the Driver Tool'
         required: true 
-        type: boolean 
+        type: boolean
+        options: 
+        - Chrome
+        - firefox
+        - Both
+        
       tags:
         description: 'Test scenario tags'
         required: true 
@@ -39,7 +46,14 @@ on:
         description: 'Environment to run tests against'
         type: environment
         required: true 
-
+        options:
+        - Dev
+        - Staging
+        - Dev11
+        - Demo
+        - Prod
+        
+        
 jobs:
   print-tag:
     runs-on: ubuntu-latest

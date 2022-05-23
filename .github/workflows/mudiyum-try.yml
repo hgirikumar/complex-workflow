@@ -30,13 +30,10 @@ on:
         - All the above
         
       print_tags:
-        description: 'Select the Driver Tool'
+        description: 'Chrome'
         required: true 
         type: boolean
-        options: 
-        - Chrome
-        - firefox
-        - Both
+
         
       tags:
         description: 'Test scenario tags'

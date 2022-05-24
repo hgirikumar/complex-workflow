@@ -41,10 +41,10 @@ on:
               
 
         
-      tags:
-        description: 'Test scenario tags'
-        required: true 
-        type: string
+      #tags:
+        #description: 'Test scenario tags'
+        #required: true 
+        #type: string#
       environment:
         description: 'Environment to run tests against'
         type: choice

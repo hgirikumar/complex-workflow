@@ -60,6 +60,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: call off value
+        run: |
+          echo "the value is ${{ github.event.inputs.logLevel.options }}
+          echo "the value is ${{ github.event.inputs.logLevel.environment }}
+          echo "the value is ${{ inputs.logLevel.environment }}
+        
     
       
 

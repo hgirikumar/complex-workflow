@@ -1,0 +1,65 @@
+name: Testing the Values only for test
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Select the Js file'
+        required: true
+        default: 'search.spec.js' 
+        type: choice
+        options:
+        - emptyCart.spec.js
+        - filter.spec.js
+        - login.spec.js
+        - navigation.spec.js
+        - registration.spec.js
+        - search.spec.js
+        - storefinder.spec.js
+        - testData.js
+        - guestWithDelivery.spec.js
+        - guestWithPickUp.spec.js
+        - loggedInWithDelivery.spec.js
+        - loggedInWithPickUp.spec.js
+        - paymentCards.spec.js
+        - spGuestWithDelivery.spec.js
+        - cartPage.spec.js
+        - checkout.spec.js
+        - configuratorStep1.spec.js
+        - configuratorStep2.spec.js
+        - configuratorStep3.spec.js
+        - All the above
+        
+      chrome:
+        description: 'Chrome'
+        required: false
+        type: boolean
+      boolean:
+        description: 'morzilla'
+        type: boolean
+        required: false
+        
+              
+
+        
+      tags:
+        description: 'Test scenario tags'
+        required: true 
+        type: string
+      environment:
+        description: 'Environment to run tests against'
+        type: choice
+        required: true 
+        options:
+        - Dev
+        - Staging
+        - Dev11
+        - Demo
+        - Prod
+        
+        
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+      
+

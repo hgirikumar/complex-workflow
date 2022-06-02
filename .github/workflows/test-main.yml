@@ -52,12 +52,7 @@ jobs:
           previousBettaTagCommit=$(git tag -l "*-beta" --sort=v:refname | tail -n 2 | head -1)
           FEATURES_IDS=$(git --no-pager log --format="%h %s %b" $previousBettaTagCommit...${{ env.REVISION }} | \
                            grep -Poi 'SFDC-\d+' | sort | uniq -i | sed -z 's/\n/ /g')
-          #Convert tickets to links
-          FEATURES_LINKS=''
-          for feature in $FEATURES_IDS
-            do
-              FEATURES_LINKS="$FEATURES_LINKS[$feature](${{ env.JIRA_URL }}/browse/$feature)\n\n"
-            done
+
           #Save as env variables
           echo "FEATURES_IDS=$FEATURES_IDS" >> $GITHUB_ENV
           echo "FEATURES=$FEATURES_LINKS" >> $GITHUB_ENV        
@@ -68,7 +63,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ github.ref }}-rc
+          tag_name: ${{ github.steps.name.ref }}-rc
           release_name: SvC 2022.PI2 Sprint 11 part 4
           body: |
             Changes in this Release

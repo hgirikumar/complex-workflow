@@ -44,18 +44,34 @@ jobs:
           echo test, and deploy your project.
           echo " the name is ${{ env.REVISION_NAME }} "
           
+      - name: Get deployed features
+        run: |
+          #Get latest tags
+           git fetch --unshallow --tags
+          #Get jira tickets between current and previous tags
+          previousBettaTagCommit=$(git tag -l "*-beta" --sort=v:refname | tail -n 2 | head -1)
+          FEATURES_IDS=$(git --no-pager log --format="%h %s %b" $previousBettaTagCommit...${{ env.REVISION }} | \
+                           grep -Poi 'SFDC-\d+' | sort | uniq -i | sed -z 's/\n/ /g')
+
+          #Save as env variables
+          echo "FEATURES_IDS=$FEATURES_IDS" >> $GITHUB_ENV
+          echo "FEATURES=$FEATURES_LINKS" >> $GITHUB_ENV        
+          
       - name: Create Release
         id: create_release
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ github.ref }}-rc
+          tag_name: ${{ github.steps.name.ref }}-rc
           release_name: SvC 2022.PI2 Sprint 11 part 4
           body: |
             Changes in this Release
             - First Change
             - Second Change
           draft: false
-          prerelease: true          
+          prerelease: true
+          
+          
+          
           

@@ -80,9 +80,7 @@ jobs:
             
             echo "A_D=git log -1 --pretty=format:"%s" >> $GITHUB_ENV
             
-            echo " the output is ${{ env.A_D }}
-          
-          required: true
+            echo " the output is ${{ env.A_D }} "
           
           draft: false
           prerelease: true

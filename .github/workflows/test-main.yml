@@ -75,9 +75,13 @@ jobs:
           tag_name: ${{ github.event.inputs.tag_name }}
           release_name: ${{ github.event.inputs.release_name }}
           body: |
-            ${{ github.run_id }}
-            ${{ github.ref_type }}
-          description: 'Text describing the contents of the tag.'
+            echo " ${{ github.event.head_commit.message }} "
+            echo " --------------------------------------------------------- "
+            
+            echo "A_D=git log -1 --pretty=format:"%s" >> $GITHUB_ENV
+            
+            echo " the output is ${{ env.A_D }}
+          
           required: true
           
           draft: false

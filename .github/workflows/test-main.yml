@@ -75,12 +75,12 @@ jobs:
           tag_name: ${{ github.event.inputs.tag_name }}
           release_name: ${{ github.event.inputs.release_name }}
           body: |
-            echo " ${{ github.event.head_commit.message }} "
-            echo " --------------------------------------------------------- "
+            ${{ github.event.head_commit.message }}
+            ${{ github.event.commits[0].message }}
+         
+            git log -1 --pretty=format:"%s"
             
-            echo "A_D=git log -1 --pretty=format:"%s" >> $GITHUB_ENV
             
-            echo " the output is ${{ env.A_D }} "
           
           draft: false
           prerelease: true
